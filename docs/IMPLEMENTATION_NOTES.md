@@ -32,3 +32,43 @@ The project demonstrates NO_DATA_FOUND, DUP_VAL_ON_INDEX, user-defined exception
 
 ## 9. Testing
 Successful and unsuccessful operations were tested to verify the application.
+## 10. Detailed Bulk Processing Review
+
+### BULK COLLECT
+The APPLY_GRADE_BONUS procedure retrieves registration IDs and
+existing scores from the GRADES table using BULK COLLECT.
+
+The retrieved values are stored in two collections:
+- v_registration_ids
+- v_scores
+
+This allows multiple records to be retrieved into PL/SQL memory
+in a single operation.
+
+### FORALL
+FORALL processes the collected registration IDs using a bulk
+UPDATE statement instead of executing individual UPDATE
+statements in a conventional PL/SQL loop.
+
+### Grade Protection
+The LEAST function ensures that adding a bonus does not
+increase a student's score beyond 100.
+
+### Row Count
+SQL%ROWCOUNT is assigned to p_rows_updated to return the
+number of rows affected by the bulk update.
+
+### Transaction Management
+The procedure does not commit automatically. Transaction
+control remains with the calling program, allowing the caller
+to commit or roll back changes.
+
+### Bulk DML Exception Handling Review
+The current implementation uses FORALL without SAVE EXCEPTIONS.
+Consequently, individual DML failures are not collected and
+reported through SQL%BULK_EXCEPTIONS.
+
+This is an identified improvement area for the project.
+SAVE EXCEPTIONS and SQL%BULK_EXCEPTIONS should be used where
+individual bulk-operation failures need to be collected and
+reported.

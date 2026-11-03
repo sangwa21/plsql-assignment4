@@ -44,3 +44,11 @@ Both successful and error test cases were executed.
 
 ## 8. AI Use Disclosure
 AI assistance was used to support code development, explain PL/SQL concepts, and troubleshoot errors. The group reviewed and tested the implementation.
+
+## AI Assistance Disclosure
+
+An AI assistant was used to support the review of assignment
+requirements, explain Oracle PL/SQL concepts, and improve
+technical documentation. The group members remain responsible
+for verifying the implementation, testing the application,
+and understanding all submitted code.
